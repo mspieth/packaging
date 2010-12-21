@@ -135,6 +135,64 @@ get-git-source:
 		fi \
 	fi
 
+get-git-source-mythbuntu-theme:
+	#checkout mythbuntu theme
+	if [ -d Mythbuntu/.git ]; then \
+		cd Mythbuntu; \
+		git fetch ;\
+		git checkout $(GIT_BRANCH) || git checkout $(GIT_BRANCH_FALLBACK);\
+		git pull --rebase ;\
+	else \
+		mkdir -p Mythbuntu ;\
+		git clone $(MYTHBUNTU_THEME_GIT_URL) tmp ;\
+		mv tmp/.git* tmp/* Mythbuntu ;\
+		rm -rf tmp ;\
+		cd Mythbuntu ;\
+		git checkout $(GIT_BRANCH) || git checkout $(GIT_BRANCH_FALLBACK);\
+	fi
+
+update-git-version:
+	#fixup --version
+	DESCRIBE=`git describe` ;\
+	echo "BRANCH=\"$(GIT_BRANCH)\"" > debian/DESCRIBE ;\
+	echo "SOURCE_VERSION=\"$$DESCRIBE\"" >> debian/DESCRIBE ;\
+
+	#fixup changelog
+	#1) Check if the hash in the changelog (GIT_HASH) matches what the tree has
+	#   ->If not, then set the new HASH we are diffing to as the one from the tree
+	#     and the old HASH we are diffing from as the one from the changelog
+	#   ->If so , then set the current HASH to the one from the tree
+	#2) Check for autobuild.
+	#   ->If not, do nothing
+	#   ->If so,  then query the PPA for a revision number
+	#3) Check for an empty last git hash, and fill if empty
+
+	CURRENT_GIT_HASH=`git log -1 --oneline | awk '{ print $$1 }'` ;\
+	echo "Current hash: $$CURRENT_GIT_HASH" ;\
+	if [ "$(GIT_HASH)" != "$$CURRENT_GIT_HASH" ]; then \
+		GIT_HASH=$$CURRENT_GIT_HASH ;\
+		LAST_GIT_HASH=$(GIT_HASH) ;\
+		if [ -n "$(AUTOBUILD)" ]; then \
+			LAST_GIT_HASH=`python debian/PPA-published-git-checker.py 0.$(GIT_MAJOR_RELEASE)` ;\
+			AUTOBUILD="Automated Build: " ;\
+		fi ;\
+		dch -b -v $(EPOCH):$(GIT_RELEASE)$(DELIMITTER)$(GIT_TYPE).$(TODAY).$$GIT_HASH-$(DEBIAN_SUFFIX) "$${AUTOBUILD}New upstream checkout ($$GIT_HASH)";\
+	else \
+		GIT_HASH=$(GIT_HASH) ;\
+	fi ;\
+	[ -n "$$LAST_GIT_HASH" ] || LAST_GIT_HASH=$(LAST_GIT_HASH) ;\
+	if [ -n "$$LAST_GIT_HASH" ] && [ "$$GIT_HASH" != "$$LAST_GIT_HASH" ]; then \
+		echo "Appending upstream changes between $$LAST_GIT_HASH and $$GIT_HASH" ;\
+		dch -a ">>Upstream changes since last upload ($$LAST_GIT_HASH):" ;\
+		if [ -d .git ]; then \
+			git log --oneline $$LAST_GIT_HASH..$$GIT_HASH | sed 's,^,[,; s, ,] ,; s,Version,version,' > .gitout ;\
+			while read line; do \
+				dch -a "$$line"; \
+			done < .gitout ;\
+			rm -f .gitout ;\
+		fi \
+	fi
+
 get-orig-source:
 	python debian/LP-get-orig-source.py $(GIT_RELEASE)$(DELIMITTER)$(SUFFIX) $(CURDIR)/../$(TARFILE)
 

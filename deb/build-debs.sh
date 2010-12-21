@@ -193,11 +193,14 @@ if [ -n "$DELTA" ]; then
 fi
 
 #check out/update checkout
-debian/rules get-git-source LAST_GIT_HASH='' GIT_BRANCH=$GIT_BRANCH GIT_BRANCH_FALLBACK=$GIT_BRANCH_FALLBACK
+#debian/rules get-git-source LAST_GIT_HASH='' GIT_BRANCH=$GIT_BRANCH GIT_BRANCH_FALLBACK=$GIT_BRANCH_FALLBACK
+debian/rules get-git-source-mythbuntu-theme LAST_GIT_HASH='' GIT_BRANCH=$GIT_BRANCH
+debian/rules update-git-version LAST_GIT_HASH=''
 
 #new upstream version
 UPSTREAM_VERSION=$(dpkg-parsechangelog | sed '/^Version/!d; s/.*[0-9]://; s/-.*//')
 
+if [ 0 = 1 ]; then
 # 0) Check for a orig tarball file.  If no file then:
 # 1) build a tarball
 # 2) is this an autobuild?  if so, double check whether the tarball already
@@ -209,6 +212,7 @@ if [ ! -f ../mythtv_$UPSTREAM_VERSION.orig.tar.gz ]; then
 	if echo $DEBIAN_SUFFIX | grep 'mythbuntu' 2>&1 1>/dev/null; then
 		debian/rules get-orig-source
 	fi
+fi
 fi
 
 #update changelog and control files
@@ -247,15 +251,17 @@ if [ -n "$PATCHES" ]; then
 fi
 
 echo "Testing all patches before building the packages"
-quilt push -aq || (quilt pop -aqf && exit 1)
-quilt pop -aq
+#quilt push -aq || (quilt pop -aqf && exit 1)
+#quilt pop -aq
 
 #build the packages
 echo "Building the packages"
-debuild $DEBUILD_FLAGS
+#debuild $DEBUILD_FLAGS
+#fakeroot make -f debian/rules binary
 
 #remove all patches and cleanup
 #seems newer dpkg-source might not need the extra quilt pop
 echo "Cleaning up"
-quilt pop -aqf || true
-debian/rules clean
+#quilt pop -aqf || true
+#quilt pop -af
+#debian/rules clean
