@@ -105,17 +105,21 @@ readonly myargs="$*"
 : ${GETTEXT_URL:="http://ftp.gnome.org/pub/gnome/binaries/win32/dependencies/$GETTEXT.zip"}
 : ${PTHREADS:="pthreads-w32-2-8-0-release"}
 : ${PTHREADS_URL:="ftp://sourceware.org/pub/pthreads-win32/$PTHREADS.tar.gz"}
-: ${ZLIB:="zlib-1.2.5"}
+: ${ZLIB:="zlib-1.2.8"}
 : ${ZLIB_URL:="http://$SOURCEFORGE/project/libpng/zlib/${ZLIB/zlib-/}/$ZLIB.tar.gz"}
 : ${FREETYPE:="freetype-2.4.3"}
 : ${FREETYPE_URL:="http://download.savannah.gnu.org/releases/freetype/$FREETYPE.tar.gz"}
-: ${LAME:="lame-3.98.4"}
-: ${LAME_URL:="http://$SOURCEFORGE/project/lame/lame/${LAME/lame-/}/$LAME.tar.gz"}
+: ${LAME:="lame-3.99.5"}
+: ${LAME_URL:="http://$SOURCEFORGE/project/lame/lame/${LAME:5:4}/$LAME.tar.gz"}
 : ${WINE:="wine-1.3.6"}
 : ${WINE_URL:="http://$SOURCEFORGE/project/wine/Source/$WINE.tar.bz2"}
 : ${DXVA2_URL:="http://download.videolan.org/pub/videolan/contrib/dxva2api.h"}
+: ${LIBEXPAT:="expat-2.1.0"}
+: ${LIBEXPAT_URL:="http://$SOURCEFORGE/project/expat/expat/${LIBEXPAT/expat-/}/$LIBEXPAT.tar.gz"}
 : ${LIBEXIF:="libexif-0.6.19"}
 : ${LIBEXIF_URL:="http://$SOURCEFORGE/project/libexif/libexif/${LIBEXIF/libexif-/}/$LIBEXIF.tar.bz2"}
+: ${LIBEXIV2:="exiv2-0.24"}
+: ${LIBEXIV2_URL:="http://www.exiv2.org/$LIBEXIV2.tar.gz"}
 : ${LIBOGG:="libogg-1.2.1"}
 : ${LIBOGG_URL:="http://downloads.xiph.org/releases/ogg/$LIBOGG.tar.bz2"}
 : ${LIBVORBIS:="libvorbis-1.3.2"}
@@ -124,9 +128,9 @@ readonly myargs="$*"
 : ${FLAC_URL:="http://$SOURCEFORGE/project/flac/flac-src/$FLAC-src/$FLAC.tar.gz"}
 : ${LIBCDIO:="libcdio-0.82"}
 : ${LIBCDIO_URL:="ftp.gnu.org/gnu/libcdio/$LIBCDIO.tar.gz"}
-: ${TAGLIB:="taglib-1.6.3"}
-: ${TAGLIB_URL:="http://developer.kde.org/~wheeler/files/src/$TAGLIB.tar.gz"}
-: ${FFTW:="fftw-3.2.2"}
+: ${TAGLIB:="taglib-1.9.1"}
+: ${TAGLIB_URL:="http://taglib.github.io/releases/$TAGLIB.tar.gz"}
+: ${FFTW:="fftw-3.3.4"}
 : ${FFTW_URL:="http://www.fftw.org/$FFTW.tar.gz"}
 : ${LIBSDL:="SDL-1.2.14"}
 : ${LIBSDL_URL:="http://www.libsdl.org/release/$LIBSDL.tar.gz"}
@@ -134,32 +138,33 @@ readonly myargs="$*"
 : ${LIBVISUAL_URL:="http://$SOURCEFORGE/project/libvisual/libvisual/$LIBVISUAL/$LIBVISUAL.tar.gz"}
 : ${LIBDVDCSS:="libdvdcss-1.2.10"}
 : ${LIBDVDCSS_URL:="http://download.videolan.org/pub/libdvdcss/${LIBDVDCSS/libdvdcss-/}/$LIBDVDCSS.tar.bz2"}
+: ${LIBXML:="libxml-1.8.17"}
+: ${LIBXML_URL:="ftp://xmlsoft.org/libxml2/old/$LIBXML.tar.gz"}
 : ${LIBXML2:="libxml2-2.7.8"}
 : ${LIBXML2_URL:="ftp://xmlsoft.org/libxml2/$LIBXML2.tar.gz"}
 : ${LIBXSLT:="libxslt-1.1.26"}
 : ${LIBXSLT_URL:="ftp://xmlsoft.org/libxslt/${LIBXSLT}.tar.gz"}
 # 16-Sep-2011 latest: mysql-5.5.16
-: ${MYSQL:="mysql-5.1.71"}
+: ${MYSQL:="mysql-5.1.73"}
 : ${MYSQL_URL:="http://mirrors.ircam.fr/pub/mysql/Downloads/MySQL-${MYSQL:6:3}/$MYSQL.tar.gz"}
 # Pre-built win32 install. NB mysql-5.1 requires winXP-SP2, 5.0 works on win2k
 # 5.0.89 unavailable 11-feb-11
 #: ${MYSQLW:="mysql-5.0.89-win32"}
 # 5.1.55 unavailable 15-sep-11
-#: ${MYSQLW:="mysql-5.1.55-win32"}
-: ${MYSQLW:="mysql-5.1.71-win32"}
+: ${MYSQLW:="mysql-5.1.73-win32"}
 : ${MYSQLW_URL:="ftp://mirrors.ircam.fr/pub/mysql/Downloads/MySQL-${MYSQLW:6:3}/${MYSQLW/mysql-/mysql-noinstall-}.zip"}
 #: ${MYSQLW_URL:="ftp://ftp.mirrorservice.org/sites/ftp.mysql.com/Downloads/MySQL-${MYSQLW:6:3}/${MYSQLW/mysql-/mysql-noinstall-}.zip"}
 # Pre-built MacOSX install
-: ${MYSQLM:="mysql-5.1.71-osx10.6-x86"}
+: ${MYSQLM:="mysql-5.1.73-osx10.6-x86"}
 : ${MYSQLM_URL:="ftp://mirrors.ircam.fr/pub/mysql/Downloads/MySQL-${MYSQLM:6:3}/$MYSQLM.tar.gz"}
 # Pre-built MacOSX powerpc
 : ${MYSQLX:="mysql-standard-4.1.22-apple-darwin7.9.0-powerpc"}
 : ${MYSQLX_URL:="ftp://mirrors.ircam.fr/pub/mysql/Downloads/MySQL-${MYSQLX:15:3}/$MYSQLX.tar.gz"}
 #: ${QT:="qt-everywhere-opensource-src-4.8.5"} # Builds for host OK but win32 & mac need updated patches
-: ${QT:="qt-everywhere-opensource-src-4.8.5"}
-: ${QT_URL:="http://download.qt-project.org/official_releases/qt/4.8/4.8.5/$QT.tar.gz"}
+: ${QT:="qt-everywhere-opensource-src-4.8.6"}
+: ${QT_URL:="http://download.qt-project.org/official_releases/qt/4.8/4.8.6/$QT.tar.gz"}
 # Configurable libraries
-readonly packages1="MYTHTV MYTHPLUGINS QT MYSQL FREETYPE LAME LIBEXIF LIBXML2"
+readonly packages1="MYTHTV MYTHPLUGINS QT MYSQL FREETYPE LAME LIBEXPAT LIBEXIF LIBEXIV2 LIBXML LIBXML2"
 readonly packages2="LIBXSLT LIBOGG LIBVORBIS FLAC LIBCDIO TAGLIB FFTW LIBSDL"
 readonly packages3="LIBVISUAL LIBDVDCSS"
 
@@ -180,6 +185,8 @@ readonly packages3="LIBVISUAL LIBDVDCSS"
 : ${WINZIP_URL:="ftp://ftp.info-zip.org/pub/infozip/win32/$WINZIP.zip"}
 : ${WINGIT:="Git-1.7.3.1-preview20101002"}
 : ${WINGIT_URL:="http://msysgit.googlecode.com/files/$WINGIT.exe"}
+: ${WINCMAKE:="cmake-2.8.12.2-win32-x86"}
+: ${WINCMAKE_URL:="http://www.cmake.org/files/v2.8/$WINCMAKE.zip"}
 : ${WININSTALLER:="mythinstaller-win32"}
 : ${WININSTALLER_URL:="http://www.softsystem.co.uk/download/mythtv/$WININSTALLER.tar.bz2"}
 
@@ -218,6 +225,7 @@ readtimeout=60
 logging="no"
 unset patches
 cleanbuild="no"
+mythcleanbuild="no"
 reconfig="no"
 reinstall="no"
 themes="no"
@@ -233,6 +241,8 @@ fi
 verbose="no"
 unset dosudo
 unset patchmaster
+noask="no"
+qtbuildloop="no"
 : ${DXVA2:="no"}
 
 
@@ -268,6 +278,9 @@ function myhelp() {
     echo "  -j n          Number of parallel make jobs [$makejobs]"
     echo "  -t <n>        Timeout after configure [$readtimeout Seconds]"
     echo "  -v            Verbose build messages [$verbose]"
+    echo "  -q            dont ask questions and wait"
+    echo "  -Q            loop QT build on failure due to VM alloc issues"
+    echo "  -k            Force a clean re-build of mythtv only"
     echo "  -C            Force a clean re-build"
     echo "  -E            Force a clean re-install"
     echo "  -F            Enable mythtv and mythplugins master patches [${patchmaster:-no}]"
@@ -308,13 +321,14 @@ function die() {
 }
 
 # Options
-while getopts ":b:c:dj:lprt:vhVCEFHI:MPRSTWX" opt
+while getopts ":b:c:dj:klpqrt:vhVCEFHI:MPQRSTWX" opt
 do
     case "$opt" in
         b) [ "${OPTARG:0:1}" != "-" ] && MYTHBRANCH=$OPTARG || die "Invalid branch tag: $OPTARG" ;;
         c) [ "${OPTARG:0:1}" != "-" ] && cpu=$OPTARG || die "Invalid CPU: $OPTARG" ;;
         d) MYTHBUILD="debug" ;;
         p) MYTHBUILD="profile" ;;
+        q) noask="yes" ;;
         r) MYTHBUILD="release" ;;
         j) [ $OPTARG -lt 0 -o $OPTARG -gt 99 ] && die "Invalid number of jobs: $OPTARG"
            [ $OPTARG -lt 1 ] && die "Invalid make jobs: $OPTARG"
@@ -323,6 +337,7 @@ do
             readtimeout=$OPTARG ;;
         v) verbose="yes" ;;
         l) logging="yes" ;;
+        k) mythcleanbuild="yes" ;;
         C) cleanbuild="yes" ;;
         E) reinstall="yes" ;;
         F) [ "$patchmaster" != "yes" ] && patchmaster="yes" || patchmaster="no" ;;
@@ -332,6 +347,7 @@ do
         W) MYTHTARGET="Windows" ;;
         I) MYTHINSTALL=`readlink -f "$OPTARG" 2>/dev/null` || die "Invalid path: $OPTARG" ;;
         P) patches="apply" ;;
+        Q) qtbuildloop="yes" ;;
         R) patches="reverse" ;;
         S) dosudo="sudo" ;;
         T) [ "$themes" = "no" ] && themes="yes" || themes="no" ;;
@@ -813,7 +829,9 @@ esac
 # Display Myth branch & build type and wait for OK
 banner "Building MythTV${branch:+ branch '$branch'} ($MYTHBUILD) for $MYTHTARGET" >&2
 [ "$cleanbuild" = "yes" ] && echo "WARNING: All packages will be rebuilt from scratch." >&2
-read -p "Press [Return] to continue or [Control-C] to abort: "
+if [ "$noask" = "no" ] ; then
+    read -p "Press [Return] to continue or [Control-C] to abort: "
+fi
 echo ""
 
 # Change to the working dir
@@ -986,8 +1004,8 @@ if ! git --version >/dev/null 2>&1 ; then
     if [ "$MSYSTEM" != "MINGW32" ]; then
         install_pkg git-core
     else
-        gitexe="c:\Program Files\Git\bin\git.exe"
-        gitexe32="C:\Program Files (x86)\Git\bin\git.exe"
+        gitexe="$PROGRAMFILES\Git\bin\git.exe"
+        gitexe32="$SYSTEMDRIVE\Program Files (x86)\Git\bin\git.exe"
         if [ ! -e "$gitexe" -a ! -e "$gitexe32" ]; then
             name=$WINGIT; url=$WINGIT_URL; arc=`basename "$url"`
             [ ! -e "$arc" ] && download "$url"
@@ -1009,6 +1027,19 @@ if ! git --version >/dev/null 2>&1 ; then
     fi
 fi
 
+if ! cmake --version >/dev/null 2>&1 ; then
+    if [ "$MSYSTEM" != "MINGW32" ]; then
+        install_pkg cmake
+    else
+		name=$WINCMAKE; url=$WINCMAKE_URL; arc=`basename "$url"`
+		[ ! -e "$arc" ] && download "$url"
+		unzip "$arc"
+		pushd `basename "$arc" .zip`
+		for i in *; do cp -a $i/* /$i ; done
+		popd
+		rm -rf `basename "$arc" .zip`
+    fi
+fi
 
 # Need YASM http://www.tortall.net/projects/yasm for FFMpeg
 if [ "$arch" = "x86" ] &&  ! which yasm >/dev/null 2>&1 ; then
@@ -1090,8 +1121,9 @@ function patchmingw() {
 function patchmingw32() {
     local gccversion=$(gcc -dumpversion)
     local path="/mingw/lib/gcc/mingw32/$gccversion/include"
+    shift
 
-	$dosudo patch -p0 "$@" <<-EOF
+	$dosudo patch -p0 -t "$@" <<-EOF
 		--- $path/float.h	2012-03-10 17:43:36 +0100
 		+++ $path/float.h	2012-03-10 17:25:34 +0100
 		@@ -28,6 +28,8 @@ see the files COPYING3 and COPYING.RUNTI
@@ -1136,6 +1168,12 @@ if isWinTarget && ! check_float ; then
     done
 fi
 
+# this fixes libtool building with libiconv
+if [ "$MSYSTEM" = "MINGW32" ]; then
+    if [ -e /lib/libintl.la ] ; then
+        mv /lib/libintl.la /lib/libintl.la.bak
+    fi
+fi
 
 ###############################################################
 # Start of build
@@ -1279,6 +1317,95 @@ function build() {
     # install
     if [ ! -e "$stampinstall" ]; then
         make_install
+        touch "$stampinstall"
+    fi
+    popd >/dev/null
+}
+
+# Build and install a library with cmake
+# $1= lib name
+# $2...= optional configure args
+function cmakebuild() {
+    local lib=$1
+    shift
+    local liburl=${lib}_URL
+    local libcfg=${lib}_CFG
+    local libdbg=${lib}_DEBUGFLAG
+    local name=${!lib}
+    [ -n "$name" ] || die "No directory for $lib"
+    local url=${!liburl}
+    [ -n "$url" ] || die "No URL for $lib"
+    local arc=`basename "$url"`
+
+    # Debug build?
+    local buildtag="" debugflag=""
+    if isdebug $lib ; then
+        buildtag="debug"
+        debugflag=${!libdbg}
+    elif [ "$?" = "1" ]; then
+        buildtag="release"
+    fi
+    local stampconfigtag="$stampconfig${buildtag:+.$buildtag}"
+
+    # Download
+    [ ! -e "$arc" ] && download "$url"
+
+    banner "Building $name${buildtag:+ ($buildtag)}"
+
+    [ "$clean" = "yes" ] && rm -rf "$name"
+
+    # Unpack
+    [ ! -d "$name" ] && unpack "$arc"
+
+    #echo "stampconfigtag = $stampconfigtag"
+    #echo "stampbuild = $stampbuild"
+    # Patch
+    pushd "$name" >/dev/null
+    dopatches "$name" || rm -f "$stampbuild" "$stampconfigtag"
+
+    # Force configure if clean re-build
+    [ "$reconfig" = "yes" ] && rm -f "$stampbuild" "$stampconfigtag"
+
+    # configure
+    if [ ! -e "$stampconfigtag" -o -n "${!libcfg}" -o ! -e "build/Makefile" ]; then
+        rm -f "$stampconfigtag"
+        [ -e Makefile ] && make_distclean || true
+        set -x
+        #./configure "--prefix=$MYTHINSTALL" ${xprefix:+--host=$xprefix} \
+        #    ${bprefix:+--build=$bprefix} $debugflag "$@" ${!libcfg}
+	rm -rf build || true
+	mkdir build
+	pushd build
+	cmake .. -G"MSYS Makefiles" \
+		"-DCMAKE_INSTALL_PREFIX=$MYTHINSTALL" \
+		"$@" ${!libcfg}
+	popd
+        set +x
+        # Call post-config function if defined
+        local libpost=${lib}_POST
+        local libpostv=${!libpost}
+        [ -n "$libpostv" ] && $libpostv
+        pausecont
+        touch "$stampconfigtag"
+        rm -f "$stampbuild"
+    fi
+
+    # make
+    local stampinstall="$( installed $name)"
+    #echo "stampinstall = $stampinstall"
+    if [ ! -e "$stampbuild" ] ; then
+	pushd build
+        $make
+	popd
+        touch "$stampbuild"
+        rm -f "$stampinstall"
+    fi
+
+    # install
+    if [ ! -e "$stampinstall" ]; then
+	pushd build
+        make_install
+	popd
         touch "$stampinstall"
     fi
     popd >/dev/null
@@ -1477,9 +1604,23 @@ if isWinTarget && [ "$DXVA2" == "yes" ]; then
 fi
 
 ###############################################################################
+# Install libexpat - http://libexpat.sourceforge.net/
+# For MythGallery
+# Including path to zlib
+CPPFLAGS="-I$incdir $CPPFLAGS" LDFLAGS="-L$libdir $LDFLAGS" \
+build LIBEXPAT
+
+###############################################################################
 # Install libexif - http://libexif.sourceforge.net/
 # For MythGallery
 build LIBEXIF
+
+###############################################################################
+# Install libexiv2 - http://www.exiv2.org/
+# For MythGallery
+# Including path to zlib
+CPPFLAGS="-I$incdir $CPPFLAGS" LDFLAGS="-L$libdir $LDFLAGS" \
+build LIBEXIV2
 
 ###############################################################################
 # Install libogg - http://www.xiph.org/ogg/
@@ -1513,7 +1654,7 @@ build LIBCDIO --disable-joliet
 TAGLIB_DEBUGFLAG="--enable-debug=yes"
 # Including path to zlib
 CPPFLAGS="-I$incdir $CPPFLAGS" LDFLAGS="-L$libdir $LDFLAGS" \
-build TAGLIB
+cmakebuild TAGLIB
 
 ###############################################################################
 # Install fftw - http://www.fftw.org/
@@ -1670,6 +1811,8 @@ function mkspecsW32() {
 		QMAKE_EXT_RES       = _res.o
 		
 		include(../common/g++.conf)
+		#include(../common/gcc-base-win32.conf)
+		#include(../common/g++-win32.conf)
 		include(../common/unix.conf)
 		
 		QMAKE_RUN_CC		= \$(CC) -c \$(CFLAGS) \$(INCPATH) -o \$obj \$src
@@ -1878,6 +2021,7 @@ if [ ! -e "$stampconfig.$debug" -o -n "${!compcfg}" -o ! -e Makefile ]; then
 
     if [ "$MSYSTEM" = "MINGW32" ]; then
         args="$args -I $incdir/mysql -L `pwd -W`/../$MYSQLW/lib/opt -l mysql"
+	export QMAKESPEC=win32-g++
         set -x
         cmd /c "configure.exe $args ${!compcfg}"
         set +x
@@ -1953,7 +2097,13 @@ function helpQt() {
     exit 1
 }
 if [ ! -e "$stampbuild" ] ; then
-    $make || helpQt
+    if [ "$qtbuildloop" = "yes" ]; then
+	while ! $make ; do
+	    sleep 60
+	done
+    else
+        $make || helpQt
+    fi
     touch "$stampbuild"
     rm -f "$stampinstall"
 fi
@@ -2012,6 +2162,11 @@ elif [ "$clean" = "yes" ]; then
 fi
 
 mythtag=$( git describe)
+case "$MYTHVER" in
+    master)
+        mythtag="master-`date +%F`"
+        ;;
+esac
 banner "Building $name branch $branch ($MYTHBUILD)"
 
 # Apply patches
@@ -2059,7 +2214,7 @@ if [ ! -e "$precis" ]; then
 fi
 
 pushd "$name" >/dev/null
-[ "$reconfig" = "yes" ] && rm -f $stampconfig*
+[ "$reconfig" = "yes" -o "$mythcleanbuild" = "yes" ] && rm -f $stampconfig*
 if [ ! -e "$stampconfig${MYTHBUILD:+.$MYTHBUILD}" -o -n "$MYTHTV_CFG" \
         -o ! -e "config.h" -o ! -e "Makefile" ]; then
     rm -f $stampconfig*
@@ -2080,7 +2235,7 @@ if [ ! -e "$stampconfig${MYTHBUILD:+.$MYTHBUILD}" -o -n "$MYTHTV_CFG" \
     case "$MYTHVER" in
         0.23*) args="$args --disable-directfb" ;;
         0.24*) args="$args --disable-directfb --enable-vaapi" ;;
-        ""|0.25*|0.26*|0.27*|master) args="$args --enable-vaapi" ;;
+        ""|0.25*|0.26*|0.27*|0.28*|master) args="$args --enable-vaapi" ;;
     esac
     rprefix=".."
     case "$MYTHTARGET" in
@@ -2103,6 +2258,14 @@ if [ ! -e "$stampconfig${MYTHBUILD:+.$MYTHBUILD}" -o -n "$MYTHTV_CFG" \
             # Disable symbol-visibility or build problems on 0.24 & 0.23
             # Also disabled on master to quieten warnings which otherwise hide real probs
             args="$args --disable-symbol-visibility"
+            args="$args --disable-w32threads"
+            args="$args --disable-vaapi"
+            args="$args --disable-mythlogserver"
+            [ -d external/qjson/include ] || mkdir external/qjson/include
+            pushd external/qjson/include
+            rm -rf QJson
+            ln -snf ../src QJson
+            popd
         ;;
         MacOSX*)
             targetos="darwin"
@@ -2172,7 +2335,7 @@ name="mythplugins"
 pushd "$name" >/dev/null
 banner "Building $name branch $branch ($MYTHBUILD)"
 
-[ "$reconfig" = "yes" ] && rm -f $stampconfig*
+[ "$reconfig" = "yes" -o "$mythcleanbuild" = "yes" ] && rm -f $stampconfig*
 if [ ! -e "$stampconfig${MYTHBUILD:+.$MYTHBUILD}" -o -n "$MYTHPLUGINS_CFG" \
         -o ! -e "config.pro" -o ! -e "Makefile" ]; then
     rm -f $stampconfig*
@@ -2181,7 +2344,7 @@ if [ ! -e "$stampconfig${MYTHBUILD:+.$MYTHBUILD}" -o -n "$MYTHPLUGINS_CFG" \
     plugins="--enable-all --enable-fftw"
     case "$MYTHVER" in
         0.23*|0.24*) plugins="$plugins --enable-libvisual" ;;
-        ""|0.25*|0.26*|0.27*|master) ;;
+        ""|0.25*|0.26*|0.27*|0.28*|master) ;;
     esac
 
     if ! isdebug QT ; then
@@ -2190,7 +2353,7 @@ if [ ! -e "$stampconfig${MYTHBUILD:+.$MYTHBUILD}" -o -n "$MYTHPLUGINS_CFG" \
         [ "$MYTHNETVISION" = "yes" ] || plugins="$plugins --disable-mythnetvision"
         case "$MYTHVER" in
             ""|0.23*|0.24*) [ "$MYTHWEATHER" = "yes" ] || plugins="$plugins --disable-mythweather" ;;
-            0.25*|0.26*|0.27*|master) ;;
+            0.25*|0.26*|0.27*|0.28*|master) ;;
         esac
     fi
 
@@ -2242,7 +2405,7 @@ if [ "$themes" = "yes" ]; then
     fi
 
     banner "Building $name branch $branch"
-    [ "$reconfig" = "yes" ] && rm -f "mythconfig.mak"
+    [ "$reconfig" = "yes" -o "$mythcleanbuild" = "yes" ] && rm -f "mythconfig.mak"
     if [ ! -e "mythconfig.mak" ]; then
         [ -e Makefile ] && { make_uninstall; make_distclean; } || true
         ./configure "--prefix=$MYTHINSTALL" --qmake="$MYTHWORK/$QT/bin/qmake" $MYTHTHEMES_CFG
@@ -2281,7 +2444,9 @@ fi
 ###############################################################################
 # Create the installation
 ###############################################################################
-mythlibs="myth mythfreemheg mythtv mythui mythupnp mythlivemedia"
+#mythlibs="myth mythfreemheg mythtv mythui mythupnp mythlivemedia"
+mythlibs="myth mythfreemheg mythtv mythui mythupnp"
+mythextlibs=""
 if [ -z "$MYTHVER" ]; then
     case "$branch" in
         *-master) MYTHVER="master" ;;
@@ -2289,24 +2454,27 @@ if [ -z "$MYTHVER" ]; then
         *-0*25)   MYTHVER="0.25" ;;
         *-0*26)   MYTHVER="0.26" ;;
         *-0*27)   MYTHVER="0.27" ;;
+        *-0*28)   MYTHVER="0.28" ;;
     esac
 fi
 case "$MYTHVER" in
-    0.23*)        mythlibs="$mythlibs mythdb" ;;
-    0.24*)        mythlibs="$mythlibs mythdb mythmetadata" ;;
-    0.25*|0.26*|0.27*|master) mythlibs="$mythlibs mythbase mythmetadata mythservicecontracts mythprotoserver" ;;
+    0.23*)        mythlibs="$mythlibs mythdb mythlivemedia" ;;
+    0.24*)        mythlibs="$mythlibs mythdb mythmetadata mythlivemedia" ;;
+    0.25*|0.26*|0.27*) mythlibs="$mythlibs mythbase mythmetadata mythservicecontracts mythprotoserver mythlivemedia" ;;
+    master|0.28*) mythlibs="$mythlibs mythbase mythmetadata mythservicecontracts mythprotoserver"
+                  mythextlibs="$mythextlibs mythnzmqt mythqjson mythzmq" ;;
     *)            mythlibs="$mythlibs mythbase mythmetadata mythservicecontracts mythprotoserver"
                   echo "WARNING Installation untested with this version." ;;
 esac
-ffmpeglibs="mythavcodec mythavformat mythavutil mythswscale"
+ffmpeglibs="mythavcodec mythavformat mythavutil mythswscale mythswresample"
 case "$MYTHVER" in
     0.24*|0.23*)     ffmpeglibs="$ffmpeglibs mythavcore mythpostproc" ;;
-    0.25*|0.26*|0.27*|master|"") ffmpeglibs="$ffmpeglibs mythpostproc" ;;
+    0.25*|0.26*|0.27*|0.28*|master|"") ffmpeglibs="$ffmpeglibs mythpostproc" ;;
 esac
-xtralibs="xml2 xslt freetype mp3lame dvdcss exif ogg vorbis vorbisenc tag cdio cdio_cdda cdio_paranoia udf visual-0.4"
+xtralibs="xml2 xslt freetype mp3lame dvdcss exif exiv2 ogg vorbis vorbisenc tag cdio cdio_cdda cdio_paranoia udf visual-0.4"
 QTDLLS="QtCore QtGui QtNetwork QtOpenGL QtSql QtSvg QtWebKit QtXml Qt3Support"
 case "$MYTHVER" in
-    ""|0.25*|0.26*|0.27*|master) QTDLLS="$QTDLLS QtScript" ;;
+    ""|0.25*|0.26*|0.27*|0.28*|master) QTDLLS="$QTDLLS QtScript" ;;
 esac
 
 if isWinTarget ; then
@@ -2324,8 +2492,9 @@ if isWinTarget ; then
 
     # Mingw runtime
     if [ "$MSYSTEM" == "MINGW32" ]; then
-        mingw="/mingw//bin"
+        mingw="/mingw/bin"
         ln -s $mingw/libstdc++-*.dll $mingw/libgcc_s_dw2-*.dll .
+	ln -s $mingw/libiconv-2.dll .
     elif [ -e "/usr/share/doc/mingw32-runtime/mingwm10.dll.gz" ]; then
         cp -p "/usr/share/doc/mingw32-runtime/mingwm10.dll.gz" .
         gunzip "mingwm10.dll.gz"
@@ -2343,6 +2512,13 @@ if isWinTarget ; then
     # FFmpeg
     for lib in $ffmpeglibs ; do
         for file in $bindir/lib$lib-*.dll ; do
+            [ -e "$file" ] && ln -s "$file" .
+        done
+    done
+
+    # mythextlibs
+    for lib in $mythextlibs ; do
+        for file in {$bindir,$libdir}/{lib,}$lib.dll ; do
             [ -e "$file" ] && ln -s "$file" .
         done
     done
