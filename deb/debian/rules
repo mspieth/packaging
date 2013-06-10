@@ -47,6 +47,8 @@ ifeq "$(DEB_BUILD_ARCH)" "armhf"
 else
 	MYTHTV_CONFIGURE_OPTS += --enable-opengl-video --enable-vaapi
 endif
+# MHEG is broken ATM 2013/06/07
+	MYTHTV_CONFIGURE_OPTS += --disable-mheg
 #                                    #
 # Architecture dependent build flags #
 #                                    #
