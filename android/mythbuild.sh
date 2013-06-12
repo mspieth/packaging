@@ -163,6 +163,7 @@ if [ ! -e stamp_configure_android ] ; then
 	--disable-dxva2 \
 	--disable-quartz-video \
 	--enable-opengl-video \
+	--enable-opengl-vsync \
 	--enable-opengl \
 	--without-bindings=perl,python,php \
 	&& touch stamp_configure_android
