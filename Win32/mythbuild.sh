@@ -2471,7 +2471,7 @@ case "$MYTHVER" in
     0.24*|0.23*)     ffmpeglibs="$ffmpeglibs mythavcore mythpostproc" ;;
     0.25*|0.26*|0.27*|0.28*|master|"") ffmpeglibs="$ffmpeglibs mythpostproc" ;;
 esac
-xtralibs="xml2 xslt freetype mp3lame dvdcss exif exiv2 ogg vorbis vorbisenc tag cdio cdio_cdda cdio_paranoia udf visual-0.4"
+xtralibs="xml2 xslt freetype mp3lame dvdcss exif exiv2 expat ogg vorbis vorbisenc tag cdio cdio_cdda cdio_paranoia udf visual-0.4"
 QTDLLS="QtCore QtGui QtNetwork QtOpenGL QtSql QtSvg QtWebKit QtXml Qt3Support"
 case "$MYTHVER" in
     ""|0.25*|0.26*|0.27*|0.28*|master) QTDLLS="$QTDLLS QtScript" ;;
@@ -2526,6 +2526,9 @@ if isWinTarget ; then
     # External libs
     for lib in $xtralibs ; do
         for file in $bindir/lib$lib-*.dll ; do
+            [ -e "$file" ] && ln -s "$file" .
+        done
+        for file in $bindir/lib$lib.dll ; do
             [ -e "$file" ] && ln -s "$file" .
         done
     done

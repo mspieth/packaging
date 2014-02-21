@@ -1,0 +1,15 @@
+--- taglib-1.9.1/CMakeLists.txt.orig	2014-06-01 16:28:59 +1000
++++ taglib-1.9.1/CMakeLists.txt	2014-06-01 16:29:31 +1000
+@@ -66,10 +66,10 @@
+ 
+ include(ConfigureChecks.cmake)
+ 
+-if(NOT WIN32)
++#if(NOT WIN32)
+   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/taglib-config.cmake ${CMAKE_CURRENT_BINARY_DIR}/taglib-config )
+   install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/taglib-config DESTINATION ${BIN_INSTALL_DIR})
+-endif()
++#endif()
+ 
+ if(WIN32)
+   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/taglib-config.cmd.cmake ${CMAKE_CURRENT_BINARY_DIR}/taglib-config.cmd )
